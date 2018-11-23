@@ -4,7 +4,7 @@ FROM ruby:2.5
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
     apt-get update -qq && \
     apt-get install -y -qq \
-      libpq-dev nodejs
+      libpq-dev nodejs vim
 
 # Create app directory
 ENV APP_HOME /usr/src/app
