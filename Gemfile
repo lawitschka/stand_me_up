@@ -11,8 +11,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'clubhouse_ruby', '~> 0.4.0'
 
+gem 'config'
+gem 'slack-ruby-bot'
+gem 'celluloid-io'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -24,4 +30,5 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'rspec-rails', '~> 3.8'
 end
