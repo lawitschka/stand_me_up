@@ -1,8 +1,12 @@
 module Clubhouse
   class << self
     # FIXME: Read from secret store
+    def token
+      @token ||= ENV['CLUBHOUSE_TOKEN']
+    end
+
     def client
-      ClubhouseRuby::Clubhouse.new(ENV['CLUBHOUSE_TOKEN'])
+      ClubhouseRuby::Clubhouse.new(token)
     end
 
     def teams
@@ -24,14 +28,18 @@ module Clubhouse
 
     def workflows
       response = client.workflows.list
-
-      wrap_response response[:content]
+      if response[:status] == "OK"
+        content = response[:state]
+        content.respond_to?(:each) ? content.map(&:deep_symbolize_keys) : content.deep_symbolize_keys
+      else
+        nil
+      end
     end
 
     def wrap_response(response)
       if response[:status] == "OK"
         content = response[:content]
-        content.respond_to?(:each) ? content.map(&:symbolize_keys) : content.symbolize_keys
+        content.is_a?(Array) ? content.map(&:deep_symbolize_keys) : content.deep_symbolize_keys
       else
         nil
       end
