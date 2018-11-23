@@ -8,14 +8,25 @@ namespace :bot do
 
     client.on :message do |data|
       case data.text
-      when "bot standup culinary" then
+      when /^bot standup/ then
+        client.message channel: data.channel, text: "Processing ..."
+        text = data.text
+        team_name = data.text.split(" ").last
+
+        markdown = TemplateGenerator.generate(team_name)
+
         client.message channel: data.channel, text: "*Hi* <@#{data.user}>! Let me tell you who is going to take notes and who will drive ... :8ball:"
-        client.message channel: data.channel, text: "Boris is driving."
-        client.message channel: data.channel, text: "George is taking notes."
+
+        team = ['Boris', 'Geogre', 'Moritz', 'Simao', 'Ben', 'Joshan', 'Sara', 'Orcun', 'Serena', 'Jason']
+        taking_notes = driving = team.sample(2)
+
+        client.message channel: data.channel, text: "#{driving} will drive today and #{taking_notes} will take notes!"
+
         client.web_client.files_upload(
           channels: '#slack-skynet-bot-team',
           as_user: true,
-          file: Faraday::UploadIO.new("daily-notes.md", 'text/markdown'),
+          # file: Faraday::UploadIO.new("daily-notes.md", 'text/markdown'),
+          content: markdown,
           title: 'Daily Notes',
           filename: 'daily-notes.md',
           filetype: 'markdown',
