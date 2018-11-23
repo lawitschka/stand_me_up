@@ -11,7 +11,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'clubhouse_ruby', '~> 0.4.0'
 
-gem 'config'
 gem 'slack-ruby-bot'
 gem 'celluloid-io'
 
