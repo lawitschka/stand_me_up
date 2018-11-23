@@ -1,0 +1,9 @@
+# <%= team_name %> - <%= Time.current.strftime('%Y/%m/%d') %>
+
+<% states.each do |state| %>
+## <%= state[:name] %>
+<% stories[state[:id]]&.each do |story| %>
+[[<%= story[:id] %>]](<%= story[:app_url] %>) <%= story[:name] %>
+<% end %>
+
+<% end %>
