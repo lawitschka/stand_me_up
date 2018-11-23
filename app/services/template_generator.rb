@@ -1,7 +1,11 @@
 module TemplateGenerator
   class << self
-    def generate(team_id)
-      team = Clubhouse.team(team_id)
+    def generate(team_name)
+      name = team_name.strip.downcase
+      team = Clubhouse.teams.
+        select { |team| team[:name].downcase == name }.first
+
+      team_id = team[:id]
 
       states = Clubhouse.workflows.
         select { |wf| wf[:team_id] == team_id }[0][:states].
