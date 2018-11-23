@@ -16,6 +16,7 @@ namespace :bot do
           file: Faraday::UploadIO.new("daily-notes.md", 'application/txt'),
           title: 'Daily Notes',
           filename: 'daily-notes.txt',
+          filetype: 'post',
           initial_comment: 'Make your daily notes ...'
         )
       when /^bot/ then
