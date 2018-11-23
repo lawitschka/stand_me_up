@@ -2,7 +2,7 @@ module Clubhouse
   class << self
     # FIXME: Read from secret store
     def client
-      ClubhouseRuby::Clubhouse.new('5bf7d1b4-204b-4a9f-852a-985bace6b079')
+      ClubhouseRuby::Clubhouse.new(ENV['CLUBHOUSE_TOKEN'])
     end
 
     def teams
