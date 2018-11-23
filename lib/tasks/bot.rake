@@ -28,7 +28,7 @@ namespace :bot do
       culinary: %w(Raluca Peter Manoj Avraam Rajiv),
       logistics: %w(Julia Katrin Eli Nathan Michelle),
       data: %w(Dafna Joseph Quitba Manas Lucia),
-      retention: %w(Moritz Simao Sara Orcun Serena Boris Diogo Jason George Joshan Ben Charles)
+      retention: %w(Moritz Simao Sara Orcun Serena Boris Diogo Jason George Joshan Ben Charles),
       platform: %w(Bruno Calvin Ghazal)
     }
 
@@ -36,6 +36,7 @@ namespace :bot do
 
     client.message channel: data.channel, text: "*Hi* <@#{data.user}>! Let me tell you who is going to take notes and who will drive ... :8ball:\n#{driving} will drive today and #{taking_notes} will take notes!"
 
+    sleep(1)
     client.web_client.files_upload(
       channels: '#slack-skynet-bot-team',
       as_user: true,
