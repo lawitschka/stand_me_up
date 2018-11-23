@@ -27,11 +27,12 @@ module Clubhouse
   def self.team_stories(team_id)
     team = team(team_id)
 
+    # FIXME: We are swallowing errors here from sub-requests
     team[:project_ids].map do |project_id|
       response = client.projects(project_id).stories.list
 
       if response[:status] == "OK"
-        response[:content].symbolize_keys
+        response[:content].map(&:symbolize_keys)
       else
         nil
       end
