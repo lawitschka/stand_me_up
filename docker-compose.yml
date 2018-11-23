@@ -25,7 +25,8 @@ services:
       - db
     environment:
       REDIS_URL: 'redis://redis:6379'
-      SLACK_API_TOKEN: 'xoxb-2347399024-487978255158-EEHuvZAUhATE73FUvxZMLPkO'
+      CLUBHOUSE_TOKEN: ${CLUBHOUSE_TOKEN}
+      SLACK_API_TOKEN: ${SLACK_API_TOKEN}
     volumes:
       - .:/usr/src/app
       - bundler_cache:/bundle
