@@ -23,15 +23,13 @@ module Clubhouse
     end
 
     def workflows
-      response = client.workflows.list
-
-      wrap_response response[:content]
+      wrap_response client.workflows.list
     end
 
     def wrap_response(response)
       if response[:status] == "OK"
         content = response[:content]
-        content.respond_to?(:each) ? content.map(&:symbolize_keys) : content.symbolize_keys
+        content.is_a?(Array) ? content.map(&:deep_symbolize_keys) : content.deep_symbolize_keys
       else
         nil
       end
