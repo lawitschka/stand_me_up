@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:5
+    networks:
+      - backend
+
+  db:
+    image: postgres:11
+    networks:
+      - backend
+
+  web:
+    build: .
+    command: bin/rails server --port 3000 --binding 0.0.0.0
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - redis
+      - db
+    environment:
+      REDIS_URL: 'redis://redis:6379'
+    volumes:
+      - .:/usr/src/app
+      - bundler_cache:/bundle
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  bundler_cache:
