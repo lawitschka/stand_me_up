@@ -28,7 +28,7 @@ namespace :bot do
       culinary: %w(Raluca Peter Manoj Avraam Rajiv),
       logistics: %w(Julia Katrin Eli Nathan Michelle),
       data: %w(Dafna Joseph Quitba Manas Lucia),
-      retention: %w(Moritz Simao Sara Orcun Serena Boris Diogo Jason George Joshan Ben Charles),
+      retention: %w(Moritz Simao Sara Orcun Serena Boris Diogo Jason George Joshan Ben Charles Suraj),
       platform: %w(Bruno Calvin Ghazal)
     }
 
